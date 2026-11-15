@@ -10,6 +10,7 @@ with open("recipients.json", "r") as file:
     recipients = json.load(file)
 
 
+
 def get_recipient():
 
     print("\n1. Contact")
@@ -26,10 +27,11 @@ def get_recipient():
 
         name = input("\nEnter contact name: ").strip().lower()
 
-        if name not in recipients["contacts"]:
-            raise ValueError("Contact not found!")
+        for saved_name, number in recipients["contacts"].items():
+            if saved_name.lower() == name:
+                return "contact", number
 
-        return "contact", recipients["contacts"][name]
+        raise ValueError("Contact not found!")
 
     elif choice == "2":
 
@@ -39,14 +41,17 @@ def get_recipient():
 
         name = input("\nEnter group name: ").strip().lower()
 
-        if name not in recipients["groups"]:
-            raise ValueError("Group not found!")
+        for saved_name, group_id in recipients["groups"].items():
+            if saved_name.lower() == name:
+                return "group", group_id
 
-        return "group", recipients["groups"][name]
+        raise ValueError("Group not found!")
 
     elif choice == "3":
 
-        number = input("Enter phone number with country code: ").strip()
+        number = input(
+            "Enter phone number with country code: "
+        ).strip()
 
         if not re.fullmatch(r"\+\d{8,15}", number):
             raise ValueError("Invalid phone number!")
@@ -54,7 +59,8 @@ def get_recipient():
         return "contact", number
 
     else:
-        raise ValueError("Invalid selection!")
+        raise ValueError("Invalid selection! Choose 1, 2 or 3.")
+
 
 
 def schedule_message():
