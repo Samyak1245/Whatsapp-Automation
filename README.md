@@ -144,13 +144,3 @@ Contributions, suggestions, and improvements are welcome.
 2. Create a new branch.
 3. Make your changes.
 4. Submit a pull request.
-
-## Author
-
-**Samyak Pusate**
-
-GitHub: [@Samyak1245](https://github.com/Samyak1245)
-
----
-
-If you find this project useful, consider giving the repository a ⭐ on GitHub!
